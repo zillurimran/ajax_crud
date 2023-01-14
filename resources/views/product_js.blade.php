@@ -13,18 +13,21 @@
                 e.preventDefault();
                 var name = $('#name').val();
                 var price = $('#price').val();
-                console.log(name+price);
+
             $.ajax({
                 url:"{{ route('add.product') }}",
                 method:'post',
                 data:{name:name,price:price},
                 success:function (res) {
-
+                    if(res.status == 'success'){
+                        $('#addModal').modal('hide');
+                        $('#addProductForm')[0].reset();
+                    }
                 },
                 error:function (err) {
                     let error = err.responseJSON;
                     $.each(error.errors,function(index, value){
-                        $('.errMsgContainer').append('<span>'+'*'+value+'</span>'+'<br>')
+                        $('.errMsgContainer').append('<span>'+'* '+value+'</span>'+'<br>')
 
                     })
 

@@ -29,18 +29,20 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @foreach($products as $key=>$product)
                     <tr>
-                        <th>1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
+                        <th>{{$key+1}}</th>
+                        <td>{{$product->name}}</td>
+                        <td>{{$product->price}}</td>
                         <td>
                             <a href="" class="btn btn-success"><i class="las la-edit"></i></a>
                             <a href="" class="btn btn-danger"><i class="las la-trash-alt"></i></a>
                         </td>
                     </tr>
-
+                    @endforeach
                     </tbody>
                 </table>
+                {!! $products->links() !!}
             </div>
         </div>
     </div>
