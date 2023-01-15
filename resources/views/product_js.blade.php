@@ -48,6 +48,55 @@
 
         })
 
+       //update product data
+
+        $(document).on('click','.update_form',function (e) {
+            e.preventDefault();
+            let up_id = $('#up_id').val();
+            let up_name = $('#up_name').val();
+            let up_price = $('#up_price').val();
+
+            $.ajax({
+                url:"{{ route('update.product') }}",
+                method:'post',
+                data:{up_id:up_id,up_name:up_name,up_price:up_price},
+                success:function (res) {
+                    if(res.status == 'success'){
+                        $('#updateModal').modal('hide');
+                        $('#updateProductForm')[0].reset();
+                        $('.table').load(location.href+' .table');
+                    }
+                },
+                error:function (err) {
+                    let error = err.responseJSON;
+                    $.each(error.errors,function(index, value){
+                        $('.errMsgContainer').append('<span>'+'* '+value+'</span>'+'<br>')
+
+                    })
+
+                }
+            })
+        })
+
+        //delete product
+        $(document).on('click','.delete_product',function (e) {
+                e.preventDefault();
+                let product_id = $(this).data('id')
+            if(confirm('are you sure to delete this product?')){
+                $.ajax({
+                    url:"{{route('delete.product')}}",
+                    method:'post',
+                    data:{product_id:product_id},
+                    success:function (res) {
+                        if(res.status=='success'){
+                            $('.table').load(location.href+' .table');
+                        }
+
+                    }
+                });
+            }
+        })
+
 
     })
 </script>

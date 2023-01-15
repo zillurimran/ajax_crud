@@ -20,4 +20,20 @@ class ProductController extends Controller
             'status'=>'success'
         ]);
     }
+
+    public function updateProduct(Request $request){
+
+        Product::updateProduct($request);
+        return response()->json([
+            'status'=>'success'
+
+        ]);
+    }
+
+    public function deleteProduct(Request $request){
+        Product::find($request->product_id)->delete();
+        return response()->json([
+            'status'=>'success'
+        ]);
+    }
 }
