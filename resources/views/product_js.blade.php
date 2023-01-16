@@ -155,6 +155,32 @@
             }
         })
 
+        //pagination
+
+        $(document).on('click','.pagination a',function (e) {
+                e.preventDefault();
+                let page = $(this).attr('href').split('page=')[1]
+                product(page)
+
+        })
+        function product(page) {
+
+                $.ajax({
+                    url:'pagination/paginate-data?page='+page,
+                    method:'GET',
+                    success:function(res){
+                         $('.table-data').html(res)
+                    }
+                })
+        }
+
+        //search.........
+        $(document).on('keyup',function (e) {
+            e.preventDefault();
+            let search_string = $('#search').val()
+            console.log(search_string)
+
+        })
 
     })
 </script>

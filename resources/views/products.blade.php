@@ -18,8 +18,9 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <h2 class="my-5 text-center">LARAVEL-9 AJAX CRUD</h2>
-            <a href="" class="btn btn-warning fw-bold" data-bs-toggle="modal" data-bs-target="#addModal">Add Product</a>
-            <div class="table-data mt-3">
+            <a href="" class="btn btn-warning fw-bold my-3" data-bs-toggle="modal" data-bs-target="#addModal">Add Product</a>
+            <input type="text" id="search" class="form-control mb-2" name="search" placeholder="Search here...">
+            <div class="table-data">
                 <table class="table table-bordered">
                     <thead>
                     <tr>
